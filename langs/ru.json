@@ -6,5 +6,6 @@
     "wednesday": "Среда",
     "thursday": "Четверг",
     "friday": "Пятинца",
-    "time": "Время"
+    "time": "Время",
+    "last-minuts": "До Начала Урока Осталось {minutes} Минут"
 }

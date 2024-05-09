@@ -1,10 +1,32 @@
 <script setup>
 import { computed, ref } from "vue";
 import data from "~/static/data.json";
+// SEO
+useHead({
+  title: 'Fizmat Schedule | Расписание уроков физмат | MPD Club',
+  meta: [
+    { name: 'description', content: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!' },
+    { name: 'keywords', content: 'РФМШ расписание уроки Fizmat mpd MPD FIZMAT Schedule кесте' }
+  ]
+});
 
-const times = ["8.00 - 8.45", "8.50 - 9.35", "9.50 - 10.35", "10.40 - 11.25", "11.45 - 12.30", 
-                "12.35 - 13.20", "13.40 - 14.25", "14.30 - 15.15", "15.40 - 16.25", "16.30 - 17.15"];
+useSeoMeta({
+  title: 'Fizmat Schedule | Расписание уроков физмат | MPD Club',
+  ogTitle: '🐧 Расписание FizMat MPD',
+  description: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!',
+  ogDescription: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!',
+  ogImage: 'mpd/img/fav.png'
+});
 
+const times = ["8.00 - 8.45", "8.50 - 9.35", "9.50 - 10.35", "10.40 - 11.25", "11.45 - 12.30", "12.35 - 13.20", "13.40 - 14.25", "14.30 - 15.15", "15.40 - 16.25", "16.30 - 17.15"];
+const selectedGrade = useCookie("selectedGrade", { default: () => 7 });
+const selectedSection = useCookie("selectedSection", { default: () => "A" });
+const minutsLeft = ref();
+
+const day = ref(new Date().getDay());
+const timeInMinutes = ref(new Date().getMinutes() + new Date().getHours() * 60);
+
+// parse class
 const parseClassIdentifier = (classKey) => {
     if (!classKey) {
         console.error("Invalid classKey:", classKey);
@@ -21,9 +43,6 @@ const parseClassIdentifier = (classKey) => {
     };
 };
 
-const selectedGrade = useCookie('selectedGrade', {default: () => (7),});
-const selectedSection = useCookie('selectedSection', {default: () => ("A"),});
-
 const selectGrade = (grade) => {
     selectedGrade.value = grade;
 
@@ -35,7 +54,6 @@ const selectGrade = (grade) => {
         selectedSection.value = "A";
     }
 };
-
 const selectSection = (section) => {
     selectedSection.value = section;
 };
@@ -49,6 +67,17 @@ const currentSections = computed(() => {
     return Object.keys(data)
         .filter((item) => item.startsWith(selectedGrade.value.toString()))
         .map((key) => parseClassIdentifier(key).section);
+});
+
+const scheduleMatrix = computed(() => {
+    const classKey = selectedGrade.value + selectedSection.value;
+    if (!data[classKey]) return [];
+
+    const res = Object.values(data[classKey])[day.value - 1].filter((entry) => {
+        return entry !== "NAN";
+    });
+
+    return res;
 });
 
 const filteredData = computed(() => {
@@ -73,6 +102,34 @@ const filteredData = computed(() => {
         })
     );
 });
+
+const changeDay = (delta) => {
+    currentDayIndex.value = (currentDayIndex.value + delta + 5) % 5; // wrap around within the workweek
+};
+
+const curentlesson = computed(() =>{
+    const timeRNHigh = timeInMinutes.value;
+    if (timeRNHigh >= 525 && timeRNHigh <= 575) return 2;// 8.50 - 9.35
+    if (timeRNHigh >= 575 && timeRNHigh <= 635) return 3;// 9.50 - 10.35
+    if (timeRNHigh >= 420 && timeRNHigh <= 525) return 1;// 7.00 - 8.45
+    if (timeRNHigh >= 635 && timeRNHigh <= 685) return 4;// 10.40 - 11.25
+    if (timeRNHigh >= 685 && timeRNHigh <= 750) return 5;// 11.45 - 12.30
+    if (timeRNHigh >= 750 && timeRNHigh <= 800) return 6;// 12.35 - 13.20
+    if (timeRNHigh >= 800 && timeRNHigh <= 865) return 7;// 13.40 - 14.25
+    if (timeRNHigh >= 865 && timeRNHigh <= 915) return 8;// 14.30 - 15.15
+    if (timeRNHigh >= 915 && timeRNHigh <= 985) return 9;// 16.30 - 17.15
+    return 0;
+});
+
+const updateTimeInMinutes = () => {
+    const now = new Date();
+    timeInMinutes.value = now.getMinutes() + now.getHours() * 60;
+};
+
+onMounted(() => {
+    updateTimeInMinutes();
+    setInterval(updateTimeInMinutes, 1000 * 60); // update every minute instead of every second
+});
 </script>
 
 <template>
@@ -91,8 +148,21 @@ const filteredData = computed(() => {
         </div>
     </div>
 
-    <div class="flex items-center justify-center text-3xl font-extrabold my-5 py-3 w-full bg-yellow-500 text-white">
+    <div class="flex items-center flex-col justify-center text-3xl my-5 font-bold py-3 w-full bg-yellow-500 text-white gap-2">
         <h1>{{ selectedGrade }}{{ selectedSection }}</h1>
+
+        <p class="md:hidden" v-if="day == 1">{{ $t("monday") }}</p>
+        <p class="md:hidden" v-if="day == 2">{{ $t("tuesday") }}</p>
+        <p class="md:hidden" v-if="day == 3">{{ $t("wednesday") }}</p>
+        <p class="md:hidden" v-if="day == 4">{{ $t("thursday") }}</p>
+        <p class="md:hidden" v-if="day == 5">{{ $t("friday") }}</p>
+
+        <p class="font-normal text-xl md:hidden">{{ $t("last-minuts", { minutes: minutsLeft }) }}</p>
+
+        <div class="flex flex-row gap-3 md:hidden">
+            <button @click="changeDay(-1)" class="btn rounded-full shadow-2xl font-bold text-xl text-black bg-white cursor-pointer">Назад</button>
+            <button @click="changeDay(1)" class="btn rounded-full shadow-2xl font-bold text-xl text-black bg-white cursor-pointer">Вперед</button>
+        </div>
     </div>
 
     <div class="hidden md:block">
@@ -102,11 +172,11 @@ const filteredData = computed(() => {
                     <tr class="text-lg bg-base-200">
                         <th>N</th>
                         <th>{{ $t("time") }}</th>
-                        <th>{{ $t("monday") }}</th>
-                        <th>{{ $t("tuesday") }}</th>
-                        <th>{{ $t("wednesday") }}</th>
-                        <th>{{ $t("thursday") }}</th>
-                        <th>{{ $t("friday") }}</th>
+                        <th :class="day == 1 ? 'active' : ''">{{ $t("monday") }}</th>
+                        <th :class="day == 2 ? 'active' : ''">{{ $t("tuesday") }}</th>
+                        <th :class="day == 3 ? 'active' : ''">{{ $t("wednesday") }}</th>
+                        <th :class="day == 4 ? 'active' : ''">{{ $t("thursday") }}</th>
+                        <th :class="day == 5 ? 'active' : ''">{{ $t("friday") }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -117,6 +187,19 @@ const filteredData = computed(() => {
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="md:hidden">
+        <div class="text-lg text-right m-auto my-5" style="max-width: 320px">
+            <div v-for="(item, index) in scheduleMatrix" :class="index + 1 == curentlesson ? 'active' : ''" class="flex flex-row justify-center items-center text-xl gap-5 font-bold my-2">
+                <p class="text-2xl">{{ index + 1 }}</p>
+                <div class="flex flex-col items-start font-bold gap-1" style="width: 100%">
+                    <p>{{ item }}</p>
+                    <p>{{ times[index] }}</p>
+                    <hr style="color: rgb(255, 255, 255); width: 100%" />
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -166,6 +249,9 @@ const filteredData = computed(() => {
 }
 </style>
 <style scoped>
+.active {
+    color: rgb(255, 215, 0);
+}
 .active-btn {
     background-color: rgb(255, 215, 0); /* Brighter color for better visibility */
     color: black;
