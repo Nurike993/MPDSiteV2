@@ -2,6 +2,9 @@
 import { computed, ref } from "vue";
 import data from "~/static/data.json";
 
+const times = ["8.00 - 8.45", "8.50 - 9.35", "9.50 - 10.35", "10.40 - 11.25", "11.45 - 12.30", 
+                "12.35 - 13.20", "13.40 - 14.25", "14.30 - 15.15", "15.40 - 16.25", "16.30 - 17.15"];
+
 const parseClassIdentifier = (classKey) => {
     if (!classKey) {
         console.error("Invalid classKey:", classKey);
@@ -18,12 +21,21 @@ const parseClassIdentifier = (classKey) => {
     };
 };
 
-const selectedGrade = ref(7);
-const selectedSection = ref("A");
+const selectedGrade = useCookie('selectedGrade', {default: () => (7),});
+const selectedSection = useCookie('selectedSection', {default: () => ("A"),});
 
 const selectGrade = (grade) => {
     selectedGrade.value = grade;
+
+    const sectionsForGrade = Object.keys(data)
+        .filter((item) => item.startsWith(grade.toString()))
+        .map((key) => parseClassIdentifier(key).section);
+
+    if (!sectionsForGrade.includes(selectedSection.value)) {
+        selectedSection.value = "A";
+    }
 };
+
 const selectSection = (section) => {
     selectedSection.value = section;
 };
@@ -45,21 +57,28 @@ const filteredData = computed(() => {
 
     const scheduleMatrix = Object.values(data[classKey]);
 
-    const rotated = scheduleMatrix[0].map((_, colIndex) => scheduleMatrix.map(row => row[colIndex] || "-"));
+    const rotated = scheduleMatrix[0].map((_, colIndex) => scheduleMatrix.map((row) => row[colIndex]));
 
-    return rotated.map(periodEntries => periodEntries.map(entry => {
-        const parts = entry.split('|');
-        const subject = parts[0];
-        const room = parts[1] || "Unknown"; 
-        return `${subject}\n${room}`;
-    }));
+    rotated.pop();
+
+    return rotated.map((periodEntries) =>
+        periodEntries.map((entry) => {
+            if (entry === "NAN") {
+                return "-";
+            }
+            const parts = entry.split("|");
+            const subject = parts[0];
+            const room = parts[1] || "Unknown";
+            return `${subject}\n${room}`;
+        })
+    );
 });
 </script>
 
 <template>
     <div class="flex items-center justify-center flex-col my-5 gap-3">
         <h1 class="text-4xl font-extrabold">Fizmat Schedule</h1>
-        <h2 class="font-medium text-center"><b>Расписание занятий РФМШ</b> <br/>Удобный просмотр расписания по дням и классам, актуальная информация для учеинков.</h2>
+        <h2 class="text-lg text-center">{{ $t("main-desc") }} <br />{{ $t("second-desc") }}</h2>
     </div>
     <div class="flex flex-wrap justify-center gap-1 my-1">
         <div v-for="grade in uniqueGrades" :key="grade" :class="{ 'active-btn': selectedGrade == grade }" class="btn btn-circle font-bold text-xl text-black bg-white hover:bg-gray-200 cursor-pointer" @click="selectGrade(grade)">
@@ -76,22 +95,24 @@ const filteredData = computed(() => {
         <h1>{{ selectedGrade }}{{ selectedSection }}</h1>
     </div>
 
-    <div>
-        <div class="overflow-x-auto flex items-center justify-center">
+    <div class="hidden md:block">
+        <div class="overflow-x-auto flex items-center justify-center my-7">
             <table class="table w-9/12 text-lg text-center whitespace-pre-line">
                 <thead>
-                    <tr>
+                    <tr class="text-lg bg-base-200">
                         <th>N</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
+                        <th>{{ $t("time") }}</th>
+                        <th>{{ $t("monday") }}</th>
+                        <th>{{ $t("tuesday") }}</th>
+                        <th>{{ $t("wednesday") }}</th>
+                        <th>{{ $t("thursday") }}</th>
+                        <th>{{ $t("friday") }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(items, index) in filteredData" :key="index">
                         <th>{{ index + 1 }}</th>
+                        <th>{{ times[index] }}</th>
                         <td v-for="(item, idx) in items" :key="idx">{{ item }}</td>
                     </tr>
                 </tbody>
@@ -99,7 +120,51 @@ const filteredData = computed(() => {
         </div>
     </div>
 </template>
-
+<style>
+.overlay {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 11;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+.overlay-content {
+    overflow: hidden;
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.overlay a:hover,
+.overlay a:focus {
+    color: #f1f1f1;
+}
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px;
+    }
+}
+.overlay-content h1 {
+    cursor: pointer;
+    font-size: 24px;
+    color: #818181;
+    font-weight: normal;
+}
+</style>
 <style scoped>
 .active-btn {
     background-color: rgb(255, 215, 0); /* Brighter color for better visibility */
