@@ -17,7 +17,25 @@ export default {
     require('daisyui'),
   ],
   daisyui: {
-    themes: ["business", "coffee"],
+    themes: ["business", "cupcake"],
+    // themes: [
+    //   {
+    //     business: {
+    //       ...require("daisyui/src/theming/themes")["light"],
+    //       ".btn-color": {
+    //         "background-color": "rgb(234, 179, 8)",
+    //         "border-color": "#1EA1F1",
+    //       },
+    //     },
+    //     cupcake: {
+    //       ...require("daisyui/src/theming/themes")["cupcake"],
+    //       ".btn-color": {
+    //         "background-color": "rgb(234, 179, 8)",
+    //         "border-color": "#1EA1F1",
+    //       },
+    //     },
+    //   },
+    // ],
   },
 }
 

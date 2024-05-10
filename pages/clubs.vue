@@ -1,47 +1,45 @@
 <template>
-<header id="header-clubs"><h1>Чтобы вступить в группу клуба -> кликните на картинку</h1></header>
-  <div id="all-cards">
-    <div v-for="n in number" class="product-card" :key="n">
-      <div class="main-images">
-          <a :href="clubs[keys[n]]['link']" target="_blank"> <img id="blue" class="blue active" :src="'.//public/clubsLogos/' + clubs[keys[n]]['logo']" :alt="keys[n]"> </a>
-          
-      </div>
-      <div class="shoe-details" style="text-align: center;">
-          <a :href="clubs[keys[n]]['link']" class="link-to-group" target="_blank"> {{keys[n]}} </a>
-          <p style="margin-top: -5px; color:black;" class="shoe-detail-paragraph">{{ clubs[keys[n]]['disc'] }}</p>
-      </div>
+    <div id="all-cards">
+        <div v-for="key in keys" :key="key" itemscope itemtype="https://schema.org/EducationalOrganization" class="product-card">
+            <div class="main-images">
+                <a :href="clubs[key].link" target="_blank">
+                    <NuxtImg itemprop="logo" :src="`clubsLogos/${clubs[key].logo}`" :alt="`${key} fizmat club`" loading="lazy" />
+                </a>
+            </div>
+            <div class="shoe-details" style="text-align: center; width: 100%;">
+                <a itemprop="name" :href="clubs[key].link" class="link-to-group" target="_blank">{{ key }}</a>
+                <p itemprop="description" style="color: black" class="shoe-detail-paragraph">{{ clubs[key].disc }}</p>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
-<script>
-import data from './assets/clubs.json'
+<script setup>
+import data from "./assets/clubs.json";
 
-const keysArray = [];
-let len_of_clubs = 0;
-for (const key in data) {
-    if (Object.hasOwnProperty.call(data, key)) {
-        keysArray.push(key);
-        len_of_clubs += 1;
-    }
-}
+// SEO
+useHead({
+  title: 'Fizmat Clubs | Все клубы физмата | MPD Club',
+  meta: [
+    { name: 'description', content: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!' },
+    { name: 'keywords', content: 'РФМШ расписание уроки Fizmat mpd MPD FIZMAT Schedule кесте' }
+  ]
+});
 
-export default {
-  name: "App",
-  components: {},
-  data() {
-    return {
-      number: len_of_clubs-1,
-      clubs:data,
-      keys:keysArray
-    };
-  }
-};
+useSeoMeta({
+  title: 'Fizmat Clubs | Все клубы физмата | MPD Club',
+  ogTitle: '🐧 Расписание FizMat MPD',
+  description: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!',
+  ogDescription: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!',
+  ogImage: 'mpd/img/fav.png'
+});
+
+const clubs = data;
+const keys = Object.keys(data);
 </script>
 
 <style scoped>
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600,700);
-
 
 h1 {
     display: block;
@@ -52,11 +50,11 @@ h1 {
     margin-inline-end: 0px;
     font-weight: bold;
 }
-.great-color{
+.great-color {
     color: #adbabd;
 }
 
-.yellow-color{
+.yellow-color {
     color: #ffbf00;
 }
 
@@ -70,17 +68,16 @@ h1 {
     margin-bottom: 20px;
 }
 
-.product-card .main-images img{
+.product-card .main-images img {
     height: 300px;
     width: 300px;
     left: 12px;
     top: -40px;
 }
 @media (min-width: 674px) {
-  .product-card {
-    height: 500px;
-
-  }
+    .product-card {
+        height: 500px;
+    }
 }
 
 @media (max-width: 674px) {
@@ -90,31 +87,28 @@ h1 {
         border-radius: 14px;
         min-width: 100%;
         max-width: 100%;
-        display:flex;
+        display: flex;
     }
 
-    .product-card .main-images img{
-      height: 150px;
-      width: 150px;
-      border-radius: 8px;
+    .product-card .main-images img {
+        height: 100%;
+        max-width: 150px;
+        border-radius: 8px;
     }
 
-    .shoe-detail-paragraph{
-      margin-top: -5px;
-      font-size: 14px;
+    .shoe-detail-paragraph {
+        margin-top: -5px;
+        font-size: 14px;
     }
 
-    .blue{
-      margin-top: 10px;
-      margin-left: 10px;
-      margin-right: 5px;
-  }
-
+    .blue {
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 5px;
+    }
 }
 
-
-
-#all-cards{
+#all-cards {
     justify-content: center;
     /* margin: auto; */
     margin-top: 100px;
@@ -123,26 +117,20 @@ h1 {
     column-gap: 55px;
 }
 
-
-.link-to-group{
+.link-to-group {
     font-size: 24px;
-    color:black;
+    color: black;
     text-decoration: none;
 }
 
-
-
-
-.club-text{
+.club-text {
     margin-top: 3px;
 }
 
-#header-clubs{
-    color:white;
+#header-clubs {
+    color: white;
     text-align: center;
     margin-bottom: -40px;
     margin-top: 100px;
 }
-
-
 </style>

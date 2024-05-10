@@ -14,6 +14,15 @@ const localePath = useLocalePath();
 const availableLocales = computed(() => {
     return locales.value.filter((i) => i.code !== locale.value);
 });
+
+let toggleValue = ref(false);
+
+const toggleInputValue = () => {
+    console.log(toggleValue.value);
+    toggleValue.value = !toggleValue.value;
+    isMenuOpen.value = !isMenuOpen.value;
+    document.body.style.overflow = isMenuOpen.value ? "hidden" : "auto";
+};
 </script>
 
 <template>
@@ -22,8 +31,8 @@ const availableLocales = computed(() => {
             <div class="overlay-content">
                 <NuxtLink @click="toggleMenu" :to="localePath('/')">🗓️ Schedule 🗓️</NuxtLink>
                 <NuxtLink @click="toggleMenu" :to="localePath('/clubs')">🐉 Clubs 🐉</NuxtLink>
-                <h1 @click="toggleMenu" id="change-color">✅ Change color ✅</h1>
-                <NuxtLink to="/mpd/">🤩 MPD club 🤩</NuxtLink>
+                <input id="change-color" :checked="toggleValue" type="checkbox" value="cupcake" class="toggle theme-controller hidden" />
+                <NuxtLink @click="toggleInputValue">✅ Change color ✅</NuxtLink>
                 <NuxtLink @click="toggleMenu" target="_blank" to="http://myextra.kz/">📰 Extracurricular 📰</NuxtLink>
             </div>
         </div>
