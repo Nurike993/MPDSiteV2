@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import data from "./assets/clubs.json";
+import data from "~/static/clubs.json";
 
 // SEO
 useHead({
