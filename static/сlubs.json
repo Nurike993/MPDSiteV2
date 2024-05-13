@@ -2,171 +2,205 @@
     "MPD": {
         "link": "https://chat.whatsapp.com/JrAixaQ8yAnCGj15keTOMx",
         "disc": "Создание совместных проектов, изучение доп. IT знаний",
-        "logo": "MPD.jpg"
+        "logo": "MPD.jpg",
+        "disc_kz": "Бірлескен жобаларды құру, қосымша IT білімді зерттеу"
     },
     "The Creators Club": {
         "link": "https://chat.whatsapp.com/JXRPG4M5NoZ8lpnmQvhRSf",
         "disc": "Обучение рисованию и совместное создание проектов,пополнение портфолио",
-        "logo": "TheCreatorsClub.jpg"
+        "logo": "TheCreatorsClub.jpg",
+        "disc_kz": "Сурет салуды үйрену және жобаларды бірлесіп құру, портфолионы толықтыру"
     },
     "MUN": {
         "link": "https://chat.whatsapp.com/GVTQe942PZmH02OXlwu1Ee",
         "disc": "Развитие политической грамотности и ораторского мастерства. Также возможность, подтянуть уровень английского языка",
-        "logo": "MUN.jpg"
+        "logo": "MUN.jpg",
+        "disc_kz": "Саяси сауаттылық пен шешендік шеберлікті дамыту. Сондай-ақ, ағылшын тілінің деңгейін көтеру мүмкіндігі"
     },
-    "Chess Club":{
-        "link":"https://chat.whatsapp.com/FPb0ZIuCFR60Uk0AlhlkJI",
-        "disc":" Совместная игра и обучение в шахматы",
-        "logo": "Chess.jpg"
+    "Chess Club": {
+        "link": "https://chat.whatsapp.com/FPb0ZIuCFR60Uk0AlhlkJI",
+        "disc": " Совместная игра и обучение в шахматы",
+        "logo": "Chess.jpg",
+        "disc_kz": "Бірлескен ойын және шахмат жаттығулары"
     },
     "Дебатный клуб": {
         "link": "https://chat.whatsapp.com/FMZOxeqqZpA7nxtZKhLBfG",
         "disc": "Организация и участие в турнирах, проведение встреч и собраний с спикерами. Развитие ораторского искусства",
-        "logo": "debate.jpg"
+        "logo": "debate.jpg",
+        "disc_kz": "Турнирлерді ұйымдастыру және қатысу, спикерлермен кездесулер мен жиналыстар өткізу. Шешендік өнерді дамыту"
     },
     "Volunteering Club": {
         "link": "https://chat.whatsapp.com/EyMgr9UkgyfFWyyS6Sk47q",
         "disc": "Наш клуб занимается продвижением волонтерских проектов, волонтерской поддержкой внутри и внешкольных ивентов",
-        "logo": "VolunteeringClub.jpg"
+        "logo": "VolunteeringClub.jpg",
+        "disc_kz": "Біздің клуб волонтерлік жобаларды ілгерілетумен, волонтерлік қолдаумен және мектептен тыс іс-шаралармен айналысады"
     },
     "Лига Плохих Шуток": {
         "link": "https://chat.whatsapp.com/LABcohhUxDkFRrwiCvT14i",
         "disc": "Проводить КВН, юмористические шоу и т.п.",
-        "logo": "LBJ.jpg"
+        "logo": "LBJ.jpg",
+        "disc_kz": "КВН, әзіл-оспақ шоуларын және т. б. өткізу."
     },
     "Agro Club": {
         "link": "https://chat.whatsapp.com/FgpCPEOlVqDAapEmYPVfdd",
         "disc": "Выращивание зелени",
-        "logo": "AgroClub.jpg"
+        "logo": "AgroClub.jpg",
+        "disc_kz": "Жасыл өсіру"
     },
     "Finance Club": {
         "link": "https://chat.whatsapp.com/DVPgtXIo9f13KmEwZc2l2L",
         "disc": "Подготовка к олимпиадам по экономике/финансам/бизнесу и инвестиционным соревнованиям. Финансовая грамотность ",
-        "logo": "FinanceClub.jpg"
+        "logo": "FinanceClub.jpg",
+        "disc_kz": "Экономика/қаржы/бизнес және инвестициялық жарыстар бойынша олимпиадаларға дайындық. Қаржылық сауаттылық "
     },
     "Research Club": {
         "link": "https://chat.whatsapp.com/FsM9kucBnJN96ehtCfJgMI",
         "disc": "Проведение общих анализов проектов, научных выставок и Написание научных исследовательских работ ",
-        "logo": "ResearchClub.jpg"
+        "logo": "ResearchClub.jpg",
+        "disc_kz": "Жобаларға, ғылыми көрмелерге жалпы талдау жүргізу және ғылыми зерттеу жұмыстарын жазу "
     },
     "Tennis Club": {
         "link": "https://chat.whatsapp.com/FSEicCjOhJMCPpwe78l87e",
         "disc": "Для тех, кто любит играть в настольный теннис",
-        "logo": "TennisClub.jpg"
+        "logo": "TennisClub.jpg",
+        "disc_kz": "Үстел теннисін ойнағанды ұнататындар үшін"
     },
     "Peer to Peer": {
         "link": "https://chat.whatsapp.com/D4yPK21aVPo6qxpMejc2nO",
         "disc": "Просвещаем молодежь через интерактивные тренинги и рассказываем о табуированных темах в Казахстане",
-        "logo": "PeertoPeer.jpg"
+        "logo": "PeertoPeer.jpg",
+        "disc_kz": "Біз жастарды интерактивті тренингтер арқылы оқытамыз және Қазақстандағы тыйым салынған тақырыптар туралы айтамыз"
     },
     "Math Club": {
         "link": "https://chat.whatsapp.com/Bq4692v76D41lOVTD7pvbL",
         "disc": "Изучение олимпиадной математики, разборы сложных задач.",
-        "logo": "MathClub.jpg"
+        "logo": "MathClub.jpg",
+        "disc_kz": "Олимпиадалық математиканы зерттеу, күрделі мәселелерді талдау."
     },
     "Fizmat Writers": {
         "link": "https://chat.whatsapp.com/L1D9oQjkvd128wal58dCfW",
         "disc": "Развитие уровня грамматики и речи, а так же написание эссе",
-        "logo": "FizmatWriters.jpg"
+        "logo": "FizmatWriters.jpg",
+        "disc_kz": "Грамматика мен сөйлеу деңгейін дамыту, сонымен қатар эссе жазу"
     },
     "Fizmat Talks": {
         "link": "https://chat.whatsapp.com/HKW3ialTCNmLWw3kR4MtTP",
         "disc": "Звать спикеров и выступать самим",
-        "logo": "FizmatTalks.jpg"
+        "logo": "FizmatTalks.jpg",
+        "disc_kz": "Спикерлерді шақырыңыз және өзіңіз сөйлеңіз"
     },
     "Space Odyssey": {
         "link": "https://chat.whatsapp.com/BDLjo7BC11v9sFaVIlOczf",
         "disc": "Клуб для тех кто хочет увидеть звезды!",
-        "logo": "SpaceOdyssey.jpg"
+        "logo": "SpaceOdyssey.jpg",
+        "disc_kz": "Жұлдыздарды көргісі келетіндерге арналған Клуб!"
     },
     "SYNT": {
         "link": "https://chat.whatsapp.com/CUIwW8aX5QLAZTaLNw035n",
         "disc": "Подготовка к научному турниру IYNT",
-        "logo": "SYNT.jpg"
+        "logo": "SYNT.jpg",
+        "disc_kz": "Iynt ғылыми турниріне дайындық"
     },
     "Воллейбольный клуб": {
         "link": "https://chat.whatsapp.com/GYqkUtmuZBBB8LQU0pqvVZ",
         "disc": "Улучшение игровых навыков, организация матчей среди школьников.",
-        "logo": "volebal.jpg"
+        "logo": "volebal.jpg",
+        "disc_kz": "Ойын дағдыларын жетілдіру, оқушылар арасында матчтар ұйымдастыру."
     },
     "Fizmat News": {
         "link": "https://chat.whatsapp.com/KI790nGaqvCEZAJxw7lat9",
         "disc": "Школьная организация СМИ",
-        "logo": "News.jpg"
+        "logo": "News.jpg",
+        "disc_kz": "Мектеп Бақ ұйымы"
     },
     "Fizmat Hub": {
         "link": "https://chat.whatsapp.com/BekYE6r5rO53rD6ETxxe9a",
         "disc": "Стать центром развития инновационных стартап и социальных проектов",
-        "logo": "FizmatHub.jpg"
+        "logo": "FizmatHub.jpg",
+        "disc_kz": "Инновациялық стартап және әлеуметтік жобаларды дамыту орталығына айналу инновациялық стартап және әлеуметтік жобаларды дамыту орталығына айналу"
     },
     "Fizmat Event Club": {
         "link": "https://chat.whatsapp.com/FgvsBCCyvb95BCL5zsXtGk",
         "disc": "Организация мероприятий",
-        "logo": "FizmatEventClub.jpg"
+        "logo": "FizmatEventClub.jpg",
+        "disc_kz": "Іс-шараларды ұйымдастыру"
     },
     "Fizmat Challengers": {
         "link": "https://chat.whatsapp.com/F1z2gGSreF0K1oSffQhFti",
         "disc": "Каждую встречу участники будут получать вызов. И в течении недели мы обсуждаем прогресс выполнения цели",
-        "logo": "Challengers.jpg"
+        "logo": "Challengers.jpg",
+        "disc_kz": "Әр кездесуде қатысушылар қиындыққа тап болады. Бір апта ішінде біз мақсаттың орындалу барысын талқылаймыз"
     },
     "Evrima": {
         "link": "https://chat.whatsapp.com/J5xGdmr1RjkAh0HGaJNYf3",
         "disc": "Интеллектуальные игры разного формата,Рубрика интересных фактов ,Не напряжённые встречи",
-        "logo": "Evrima.jpg"
+        "logo": "Evrima.jpg",
+        "disc_kz": "Әр түрлі форматтағы интеллектуалды ойындар ,қызықты фактілер айдары, стресстік кездесулер емес"
     },
     "Entomology Club": {
         "link": "https://chat.whatsapp.com/Bt4mYnJLP7CBZyP0JN2Mo2",
         "disc": "Углубленное изучение насекомых и пауков в целом и их содержания в домашних условиях",
-        "logo": "Entomology.jpg"
+        "logo": "Entomology.jpg",
+        "disc_kz": "Жалпы жәндіктер мен өрмекшілерді және оларды үйде ұстауды терең зерттеу"
     },
     "Алға": {
         "link": "https://chat.whatsapp.com/CBpZBW5my0GB1zZjlxx63S",
         "disc": "Изучение казахского языка. Развитие речи и письма на казаском языке",
-        "logo": "Алға.jpg"
+        "logo": "Алға.jpg",
+        "disc_kz": "Қазақ тілін үйрену. Қазақ тілінде сөйлеу мен жазуды дамыту"
     },
     "Be Curious": {
         "link": "https://chat.whatsapp.com/Gr8T1MKxnsaCVNyWVj3EoT",
         "disc": "Клуб для тех кто хочет больше знать!!!",
-        "logo": "Curious.jpg"
+        "logo": "Curious.jpg",
+        "disc_kz": "Көбірек білгісі келетіндерге арналған Клуб!!!"
     },
     "BESTE FREUNDE": {
         "link": "https://chat.whatsapp.com/DEjT3BmwWpH0cVvE3M1Cah",
         "disc": "Изучение Немецкого языка, для тех, кто хочет поступать заграницу",
-        "logo": "BESTEFREUNDE.jpg"
+        "logo": "BESTEFREUNDE.jpg",
+        "disc_kz": "Шетелге барғысы келетіндер үшін неміс тілін үйрену"
     },
     "Dance Club": {
         "link": "https://chat.whatsapp.com/F5R0qy2Y57p7WKUkNkC4ZM",
         "disc": "Клуб, где люди могут проявить себя в танцах разного жанра",
-        "logo": "Dance.jpg"
+        "logo": "Dance.jpg",
+        "disc_kz": "Адамдар әртүрлі жанрдағы билерде өзін көрсете алатын Клуб"
     },
     "GameDev Club": {
         "link": "https://chat.whatsapp.com/ETLBIPNjSdlKVvdu5EPnDO",
         "disc": "Создаем игры и развиваем сферы Game Developing!",
-        "logo": "GameDev.jpg"
+        "logo": "GameDev.jpg",
+        "disc_kz": "Біз ойындар жасаймыз және Game Developing салаларын дамытамыз!"
     },
     "Girls Code Club": {
         "link": "https://t.me/+zc2klUguD58yNjRi",
         "disc": "Для девочек, которые хотят кодить",
-        "logo": "GCC.jpg"
+        "logo": "GCC.jpg",
+        "disc_kz": "Кодтағысы келетін қыздарға арналған"
     },
     "Scince Club": {
         "link": "https://t.me/+9Pfj9jTCk7gxNjQ6",
         "disc": "Проводим совместные, интересные и веселые опыты/эксперементы",
-        "logo": "Scince.jpg"
+        "logo": "Scince.jpg",
+        "disc_kz": "Бірлескен, қызықты және көңілді тәжірибелер/эксперименттер өткіземіз"
     },
     "The English Club": {
         "link": "https://chat.whatsapp.com/C2mIgeslZUfGzHJ8MbhcfB",
         "disc": "Углубленное о совместное изучение англиского языка",
-        "logo": "TheEnglishClub.jpg"
+        "logo": "TheEnglishClub.jpg",
+        "disc_kz": "Ағылшын тілін бірлесіп үйрену туралы тереңдетілген"
     },
     "Philosophy Club": {
         "link": "https://chat.whatsapp.com/HsWchEeOlwu1PeqrJZvFXM",
         "disc": "Выражаем и формулируем мысли, делимся идеями. Дискутируем и пишем эссе",
-        "logo": "Philosophy.jpg"
+        "logo": "Philosophy.jpg",
+        "disc_kz": "Біз ойларды білдіреміз және тұжырымдаймыз, идеялармен бөлісеміз. Талқылау және эссе жазу"
     },
-    "Science From Nothing":{
-        "link":"https://chat.whatsapp.com/IBTVsxY1vlxIWwaE45OOpM",
-        "disc":"Клуб Инженерии, Экспериментальной Физики и Химии",
-        "logo": "Science.jpg"
+    "Science From Nothing": {
+        "link": "https://chat.whatsapp.com/IBTVsxY1vlxIWwaE45OOpM",
+        "disc": "Клуб Инженерии, Экспериментальной Физики и Химии",
+        "logo": "Science.jpg",
+        "disc_kz": "Инженерлік, эксперименттік физика және химия клубы"
     }
 }

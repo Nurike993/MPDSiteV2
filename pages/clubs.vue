@@ -1,21 +1,26 @@
 <template>
+    <h1 class="text-center mt-10">Fizmat Clubs</h1>
+    <h3 class="text-center">{{ $t("clubs-label") }}</h3>
+
     <div id="all-cards">
         <div v-for="key in keys" :key="key" itemscope itemtype="https://schema.org/EducationalOrganization" class="product-card">
             <div class="main-images">
                 <a :href="clubs[key].link" target="_blank">
-                    <NuxtImg itemprop="logo" :src="`clubsLogos/${clubs[key].logo}`" :alt="`${key} fizmat club`" loading="lazy" />
+                    <NuxtImg itemprop="logo" format="webp" :src="`clubsLogos/${clubs[key].logo}`" :alt="`${key} fizmat club`" loading="lazy" />
                 </a>
             </div>
             <div class="shoe-details" style="text-align: center; width: 100%;">
                 <a itemprop="name" :href="clubs[key].link" class="link-to-group" target="_blank">{{ key }}</a>
-                <p itemprop="description" style="color: black" class="shoe-detail-paragraph">{{ clubs[key].disc }}</p>
+                <p itemprop="description" style="color: black" class="shoe-detail-paragraph">{{ (lang == "ru") ? clubs[key].disc : clubs[key].disc_kz }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import data from "./assets/clubs.json";
+import data from "./../static/сlubs.json";
+
+const lang = useCookie("lang");
 
 // SEO
 useHead({

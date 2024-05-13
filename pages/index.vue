@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from "vue";
 import data from "~/static/data.json";
+
 // SEO
 useHead({
   title: 'Fizmat Schedule | Расписание уроков физмат | MPD Club',
@@ -73,7 +74,7 @@ const scheduleMatrix = computed(() => {
     const classKey = selectedGrade.value + selectedSection.value;
     if (!data[classKey]) return [];
 
-    const res = Object.values(data[classKey])[day.value - 1].filter((entry) => {
+    const res = Object.values(data[classKey])[day.value-1].filter((entry) => {
         return entry !== "NAN";
     });
 
@@ -104,7 +105,13 @@ const filteredData = computed(() => {
 });
 
 const changeDay = (delta) => {
-    currentDayIndex.value = (currentDayIndex.value + delta + 5) % 5; // wrap around within the workweek
+    day.value += delta
+    if (day.value <= 0) {
+        day.value = 5
+    } 
+    if (day.value > 5){
+        day.value = 1
+    }
 };
 
 const curentlesson = computed(() =>{
