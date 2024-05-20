@@ -14,12 +14,14 @@ export default defineNuxtConfig({
       {
         code: 'ru',
         file: 'langs/ru.json',
-        iso: 'ru-RU'
+        iso: 'ru-RU',
+        name: "ru"
       },
       {
         code: 'kz',
         file: 'langs/kz.json',
-        iso: 'kk-KZ'
+        iso: 'kk-KZ',
+        name: "kz"
       }
     ]
   },
@@ -27,6 +29,6 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-    }
+    },
   }
 })

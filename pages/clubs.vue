@@ -6,7 +6,7 @@
         <div v-for="key in keys" :key="key" itemscope itemtype="https://schema.org/EducationalOrganization" class="product-card">
             <div class="main-images">
                 <a :href="clubs[key].link" target="_blank">
-                    <NuxtImg itemprop="logo" format="webp" :src="`clubsLogos/${clubs[key].logo}`" :alt="`${key} fizmat club`" loading="lazy" />
+                    <NuxtImg itemprop="logo" format="webp" :src="`/clubsLogos/${clubs[key].logo}`" :alt="`${key} fizmat club`" loading="lazy" />
                 </a>
             </div>
             <div class="shoe-details" style="text-align: center; width: 100%;">
@@ -92,6 +92,8 @@ h1 {
         border-radius: 14px;
         min-width: 100%;
         max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
         display: flex;
     }
 

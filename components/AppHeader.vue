@@ -28,13 +28,13 @@ const toggleInputValue = () => {
 <template>
     <header>
         <div :class="['overlay', { open: isMenuOpen }]" class="overlay">
-            <div class="overlay-content">
+            <nav class="overlay-content">
                 <NuxtLink @click="toggleMenu" :to="localePath('/')">🗓️ Schedule 🗓️</NuxtLink>
                 <NuxtLink @click="toggleMenu" :to="localePath('/clubs')">🐉 Clubs 🐉</NuxtLink>
                 <input id="change-color" :checked="toggleValue" type="checkbox" value="cupcake" class="toggle theme-controller hidden" />
-                <NuxtLink @click="toggleInputValue">✅ Change color ✅</NuxtLink>
+                <h1 @click="toggleInputValue">✅ Change color ✅</h1>
                 <NuxtLink @click="toggleMenu" target="_blank" to="http://myextra.kz/">📰 Extracurricular 📰</NuxtLink>
-            </div>
+            </nav>
         </div>
 
         <label class="absolute right-4 top-4 btn btn-circle swap swap-rotate z-50">

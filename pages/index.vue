@@ -4,25 +4,47 @@ import data from "~/static/data.json";
 
 // SEO
 useHead({
-  title: 'Fizmat Schedule | Расписание уроков физмат | MPD Club',
-  meta: [
-    { name: 'description', content: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!' },
-    { name: 'keywords', content: 'РФМШ расписание уроки Fizmat mpd MPD FIZMAT Schedule кесте' }
-  ]
+    title: "Fizmat Schedule | Расписание уроков физмат | MPD Club",
+    meta: [
+        { name: "description", content: "Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!" },
+        { name: "keywords", content: "РФМШ расписание уроки Fizmat mpd MPD FIZMAT Schedule кесте" },
+    ],
 });
 
 useSeoMeta({
-  title: 'Fizmat Schedule | Расписание уроков физмат | MPD Club',
-  ogTitle: '🐧 Расписание FizMat MPD',
-  description: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!',
-  ogDescription: 'Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!',
-  ogImage: 'mpd/img/fav.png'
+    title: "Fizmat Schedule | Расписание уроков физмат | MPD Club",
+    ogTitle: "🐧 Расписание FizMat MPD",
+    description: "Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!",
+    ogDescription: "Расписание занятий РФМШ! Удобный просмотр расписания школы Fizmat для учеников!",
+    ogImage: "mpd/img/fav.png",
 });
 
 const times = ["8.00 - 8.45", "8.50 - 9.35", "9.50 - 10.35", "10.40 - 11.25", "11.45 - 12.30", "12.35 - 13.20", "13.40 - 14.25", "14.30 - 15.15", "15.40 - 16.25", "16.30 - 17.15"];
-const selectedGrade = useCookie("selectedGrade", { default: () => 7 });
-const selectedSection = useCookie("selectedSection", { default: () => "A" });
-const minutsLeft = ref();
+const startAndEndLessons = [480, 525, 530, 575, 590, 635, 640, 685, 705, 750, 755, 800, 820, 865, 870, 915, 940, 985];
+
+function timeForEnd(quantityLessons, minutesForTimeForEnd) {
+    // console.log(minutesForTimeForEnd);
+    for (let i = 0; i <= quantityLessons; i += 1) {
+        if (minutesForTimeForEnd >= startAndEndLessons[i * 2] && minutesForTimeForEnd <= startAndEndLessons[i * 2 + 1]) {
+            $(`.text-untill-end`).text(`До Конца Урока Осталось Менее ${startAndEndLessons[i * 2 + 1] - minutesForTimeForEnd} Минут`);
+            break;
+        }
+    }
+}
+
+function timeForStartLesson(quantityLessons, minutesForTimeForEnd) {
+    // console.log(timeInMinutes);
+    if (minutesForTimeForEnd <= 480 && minutesForTimeForEnd >= 421) {
+        $(`.text-untill-end`).text(`До Начала Урока Осталось Менее ${480 - minutesForTimeForEnd} Минут`);
+    } else {
+        for (let i = 0; i <= quantityLessons; i += 1) {
+            if (minutesForTimeForEnd >= startAndEndLessons[i * 2 + 1] && minutesForTimeForEnd <= startAndEndLessons[(i + 1) * 2]) {
+                $(`.text-untill-end`).text(`До Начала Урока Осталось Менее ${startAndEndLessons[(i + 1) * 2] - minutesForTimeForEnd} Минут`);
+                break;
+            }
+        }
+    }
+}
 
 const day = ref(new Date().getDay());
 const timeInMinutes = ref(new Date().getMinutes() + new Date().getHours() * 60);
@@ -74,7 +96,7 @@ const scheduleMatrix = computed(() => {
     const classKey = selectedGrade.value + selectedSection.value;
     if (!data[classKey]) return [];
 
-    const res = Object.values(data[classKey])[day.value-1].filter((entry) => {
+    const res = Object.values(data[classKey])[day.value - 1].filter((entry) => {
         return entry !== "NAN";
     });
 
@@ -105,26 +127,26 @@ const filteredData = computed(() => {
 });
 
 const changeDay = (delta) => {
-    day.value += delta
+    day.value += delta;
     if (day.value <= 0) {
-        day.value = 5
-    } 
-    if (day.value > 5){
-        day.value = 1
+        day.value = 5;
+    }
+    if (day.value > 5) {
+        day.value = 1;
     }
 };
 
-const curentlesson = computed(() =>{
+const curentlesson = computed(() => {
     const timeRNHigh = timeInMinutes.value;
-    if (timeRNHigh >= 525 && timeRNHigh <= 575) return 2;// 8.50 - 9.35
-    if (timeRNHigh >= 575 && timeRNHigh <= 635) return 3;// 9.50 - 10.35
-    if (timeRNHigh >= 420 && timeRNHigh <= 525) return 1;// 7.00 - 8.45
-    if (timeRNHigh >= 635 && timeRNHigh <= 685) return 4;// 10.40 - 11.25
-    if (timeRNHigh >= 685 && timeRNHigh <= 750) return 5;// 11.45 - 12.30
-    if (timeRNHigh >= 750 && timeRNHigh <= 800) return 6;// 12.35 - 13.20
-    if (timeRNHigh >= 800 && timeRNHigh <= 865) return 7;// 13.40 - 14.25
-    if (timeRNHigh >= 865 && timeRNHigh <= 915) return 8;// 14.30 - 15.15
-    if (timeRNHigh >= 915 && timeRNHigh <= 985) return 9;// 16.30 - 17.15
+    if (timeRNHigh >= 525 && timeRNHigh <= 575) return 2; // 8.50 - 9.35
+    if (timeRNHigh >= 575 && timeRNHigh <= 635) return 3; // 9.50 - 10.35
+    if (timeRNHigh >= 420 && timeRNHigh <= 525) return 1; // 7.00 - 8.45
+    if (timeRNHigh >= 635 && timeRNHigh <= 685) return 4; // 10.40 - 11.25
+    if (timeRNHigh >= 685 && timeRNHigh <= 750) return 5; // 11.45 - 12.30
+    if (timeRNHigh >= 750 && timeRNHigh <= 800) return 6; // 12.35 - 13.20
+    if (timeRNHigh >= 800 && timeRNHigh <= 865) return 7; // 13.40 - 14.25
+    if (timeRNHigh >= 865 && timeRNHigh <= 915) return 8; // 14.30 - 15.15
+    if (timeRNHigh >= 915 && timeRNHigh <= 985) return 9; // 16.30 - 17.15
     return 0;
 });
 
@@ -133,15 +155,42 @@ const updateTimeInMinutes = () => {
     timeInMinutes.value = now.getMinutes() + now.getHours() * 60;
 };
 
+var selectedGrade, selectedSection;
+
 onMounted(() => {
     updateTimeInMinutes();
     setInterval(updateTimeInMinutes, 1000 * 60); // update every minute instead of every second
+});
+
+onBeforeMount(() => {
+    selectedGrade = useCookie("selectedGrade");
+    selectedSection = useCookie("selectedSection");
+
+    if (selectedGrade.value === undefined) selectedGrade.value = 7;
+    if (selectedSection.value === undefined) selectedSection.value = "A";
+});
+
+const bs = computed(() => {
+    let low = 0;
+    let high = startAndEndLessons.length;
+
+    if (timeInMinutes.value > startAndEndLessons[high - 1]) return -1;
+
+    while (low < high) {
+        let mid = Math.floor((low + high) / 2);
+        if (startAndEndLessons[mid] <= timeInMinutes.value) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    return high;
 });
 </script>
 
 <template>
     <div class="flex items-center justify-center flex-col my-5 gap-3">
-        <h1 class="text-4xl font-extrabold">Fizmat Schedule</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold">Fizmat Schedule</h1>
         <h2 class="text-lg text-center">{{ $t("main-desc") }} <br />{{ $t("second-desc") }}</h2>
     </div>
     <div class="flex flex-wrap justify-center gap-1 my-1">
@@ -164,7 +213,8 @@ onMounted(() => {
         <p class="md:hidden" v-if="day == 4">{{ $t("thursday") }}</p>
         <p class="md:hidden" v-if="day == 5">{{ $t("friday") }}</p>
 
-        <p class="font-normal text-xl md:hidden">{{ $t("last-minuts", { minutes: minutsLeft }) }}</p>
+        <p class="font-normal text-center text-xl md:hidden" v-if="bs != -1 && bs % 2 == 0">{{ $t("last-minuts", { minutes: startAndEndLessons[bs] - timeInMinutes }) }}</p>
+        <p class="font-normal text-center text-xl md:hidden" v-if="bs != -1 && bs % 2 != 0">{{ $t("last-minuts-lesson", { minutes: startAndEndLessons[bs] - timeInMinutes }) }}</p>
 
         <div class="flex flex-row gap-3 md:hidden">
             <button @click="changeDay(-1)" class="btn rounded-full shadow-2xl font-bold text-xl text-black bg-white cursor-pointer">Назад</button>

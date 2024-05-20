@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    width: 100vw !important;
+}
+
 .animation {
     font-weight: 700;
     text-align: center;
