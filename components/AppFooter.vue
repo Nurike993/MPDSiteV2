@@ -13,7 +13,7 @@ const abau = ref(false);
             <p class="link link-hover hover:no-underline hover:text-yellow-500 hover:duration-300">Terms & Conditions</p>
         </nav>
         <aside>
-            <p @click="abau=true">INFERNO Copyright © 2021 Inferno - All rights reserved <span v-if="abau">Абай лох</span></p>
+            <p @click="abau=true">INFERNO Copyright © 2021 Inferno - All rights reserved</p>
         </aside>
     </footer>
 </template>
