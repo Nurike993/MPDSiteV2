@@ -6,6 +6,8 @@
     "wednesday": "Сәрсенбі",
     "thursday": "Бейсенбі",
     "friday": "Жұма",
+    "saturday": "Сенбі",
+    "sunday": "Жексенбі",
     "time": "Уақыт",
     "last-minuts": "Сабақ Басталғанға Дейін {minutes} Минуттан Аз Уақыт Қалды",
     "last-minuts-lesson": "Сабақтың Соңына {minutes} Минуттан Аз Уақыт Қалды",
