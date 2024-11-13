@@ -212,6 +212,8 @@ const bs = computed(() => {
         <p class="md:hidden" v-if="day == 3">{{ $t("wednesday") }}</p>
         <p class="md:hidden" v-if="day == 4">{{ $t("thursday") }}</p>
         <p class="md:hidden" v-if="day == 5">{{ $t("friday") }}</p>
+        <p class="md:hidden" v-if="day == 6">{{ $t("saturday") }}</p>
+        <p class="md:hidden" v-if="day == 7">{{ $t("sunday") }}</p>
 
         <p class="font-normal text-center text-xl md:hidden" v-if="bs != -1 && bs % 2 == 0">{{ $t("last-minuts", { minutes: startAndEndLessons[bs] - timeInMinutes }) }}</p>
         <p class="font-normal text-center text-xl md:hidden" v-if="bs != -1 && bs % 2 != 0">{{ $t("last-minuts-lesson", { minutes: startAndEndLessons[bs] - timeInMinutes }) }}</p>
@@ -234,6 +236,8 @@ const bs = computed(() => {
                         <th :class="day == 3 ? 'active' : ''">{{ $t("wednesday") }}</th>
                         <th :class="day == 4 ? 'active' : ''">{{ $t("thursday") }}</th>
                         <th :class="day == 5 ? 'active' : ''">{{ $t("friday") }}</th>
+                        <th :class="day == 6 ? 'active' : ''">{{ $t("saturday") }}</th>
+                        <th :class="day == 7 ? 'active' : ''">{{ $t("sunday") }}</th>
                     </tr>
                 </thead>
                 <tbody>
